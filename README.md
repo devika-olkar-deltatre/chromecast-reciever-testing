@@ -1,4 +1,4 @@
-# Rogers Chromecast Receiver
+# Chromecast Receiver
 
 ## Manage Release
 1. Select "Create a new release" on the homepage of your repo
