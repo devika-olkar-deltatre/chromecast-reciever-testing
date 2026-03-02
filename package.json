@@ -1,5 +1,5 @@
 {
-  "name": "rogers-chromecast-receiver",
+  "name": "testing-diva-chromecast-receiver",
   "version": "1.0.36",
   "description": "",
   "main": "src/diva.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/deltatre-vxp/rogers-chromecast-receiver.git"
+    "url": "git+https://github.com/deltatre-vxp/testing-diva-chromecast-receiver.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/deltatre-vxp/rogers-chromecast-receiver/issues"
+    "url": "https://github.com/deltatre-vxp/testing-diva-chromecast-receiver/issues"
   },
-  "homepage": "https://github.com/deltatre-vxp/rogers-chromecast-receiver#readme",
+  "homepage": "https://github.com/deltatre-vxp/testing-diva-chromecast-receiver#readme",
   "devDependencies": {
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
