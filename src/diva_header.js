@@ -1,8 +1,8 @@
 /**
  * Diva Chromecast Receiver App
  *
- * @version %%APP_VERSION%%
+ * @version %%GULP_INJECT_VERSION%%
  * @author  Deltatre, https://deltatre.com
- * @updated %%BUILD_DATE%%
- * @debugEnabled %%DEBUG_ENABLED%%
+ * @updated %%GULP_INJECT_DATE%%
+ *
  */

@@ -9,34 +9,6 @@ body {
     font-family: "Open Sans", Roboto, sans-serif;
 }
 
-#bgImageContainer {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: none;
-    opacity: 0;
-    // transition: opacity 0.6s ease-out;
-    z-index: 200;
-    background-color: #000;
-  }
-  
-#bgImage {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-
-#bgImage[alt]:after {  
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    content: attr(alt);
-  }
-
 #video {
     position: absolute;
     background-color: transparent;
@@ -45,7 +17,7 @@ body {
 }
 
 #debugPanel {
-    // display: none;
+    display: none;
     position: absolute;
     right: 20px;
     background: #333333;

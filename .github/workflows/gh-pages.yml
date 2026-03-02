@@ -32,9 +32,9 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: "Build"
-        run: yarn build
+        run: yarn dist
         env:
-          DEBUG_ENABLED: ${{ vars.DEBUG_ENABLED || 'false' }}
+          DEBUG_ENABLED: 'true'
           ROGERS_CONVIVA_CUSTOMER_KEY: ${{ vars.ROGERS_CONVIVA_CUSTOMER_KEY || '' }}
           ROGERS_CONVIVA_GATEWAY_URL: ${{ vars.ROGERS_CONVIVA_GATEWAY_URL || '' }}
 

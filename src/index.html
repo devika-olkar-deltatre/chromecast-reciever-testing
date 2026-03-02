@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>Diva Chromecast</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="diva.css">
 </head>
 <body>
@@ -15,15 +11,12 @@
   </div>
 
   <div id="loading">
+    <!-- <div id="spinner"></div> -->
     <div class="sk-three-bounce">
         <div class="sk-child sk-bounce1"></div>
         <div class="sk-child sk-bounce2"></div>
         <div class="sk-child sk-bounce3"></div>
       </div>
-  </div>
-
-  <div id="bgImageContainer">
-    <img id="bgImage" src="" alt="Background"/>
   </div>
 
   <video id="video" preload="none"></video>
@@ -38,9 +31,8 @@
     <div id="nolive"><i class="circle"></i><span>GO LIVE</span></div>
   </div>
 
-  <script type="text/javascript" src="https//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
+  <script type="text/javascript" src="lib/cast_receiver_framework.js"></script>
   <script type="text/javascript" src="lib/hls.min.js"></script>
-  <script type="text/javascript" src="lib/diva-html5-conviva-plugin.js"></script>
   <script type="text/javascript" src="diva.js"></script>
 
 </body>
