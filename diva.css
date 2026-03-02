@@ -1,0 +1,274 @@
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[2].use[3]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[4]!./src/sass/diva.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+body {
+  background-color: #000;
+  background-image: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", Roboto, sans-serif;
+}
+
+#bgImageContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  opacity: 0;
+  z-index: 200;
+  background-color: #000;
+}
+
+#bgImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+#bgImage[alt]:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  content: attr(alt);
+}
+
+#video {
+  position: absolute;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+}
+
+#debugPanel {
+  position: absolute;
+  right: 20px;
+  background: #333333;
+  text-align: right;
+  color: white;
+  opacity: 0.7;
+  z-index: 2000;
+  padding: 3px 6px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  font-weight: normal;
+  border-top: 10px solid #4285F5;
+}
+
+.debugContent {
+  font-weight: bold;
+  display: inline-block;
+}
+
+.debugLabel {
+  font-weight: normal;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.debugRow {
+  display: block;
+}
+
+#loading {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 300;
+  opacity: 0;
+}
+#loading #spinner {
+  position: relative;
+  background-image: url(./img/d3_loading_icon.png);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* 
+Loader
+https://github.com/tobiasahlin/SpinKit/blob/master/examples/7-three-bounce.html
+*/
+.sk-three-bounce {
+  margin: 40px auto;
+  margin-top: 28%;
+  width: 80px;
+  text-align: center;
+  z-index: 200;
+}
+
+.sk-three-bounce .sk-child {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 100%;
+  display: inline-block;
+}
+
+#error {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 100;
+  opacity: 0;
+  text-align: center;
+}
+#error #message {
+  position: relative;
+  top: calc(50% - 50px);
+  display: inline-block;
+  max-width: 80%;
+  color: #fff;
+  font-size: 32px;
+}
+
+#title {
+  font-size: 36px;
+  position: absolute;
+  z-index: 500;
+  color: #fff;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+  left: 5%;
+  right: 5%;
+  top: 40px;
+}
+
+#controls {
+  opacity: 0;
+  position: absolute;
+  z-index: 150;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.8+100 */
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#00000000", endColorstr="#cc000000", GradientType=0);
+  /* IE6-9 */
+}
+#controls #timeline {
+  position: absolute;
+  height: 3px;
+  bottom: 45px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+#controls #bar {
+  width: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+#controls #play,
+#controls #pause {
+  position: absolute;
+  left: 3%;
+  bottom: 30px;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  opacity: 0;
+}
+#controls #play {
+  background-image: url(./img/d3_play_button.png);
+}
+#controls #pause {
+  background-image: url(./img/d3_pause_button.png);
+}
+#controls #duration,
+#controls #current-time,
+#controls #live,
+#controls #nolive {
+  color: #fff;
+  font-size: 15px;
+  position: absolute;
+  bottom: 40px;
+  width: 7%;
+}
+#controls #live,
+#controls #nolive {
+  right: 3%;
+  text-align: center;
+}
+#controls #live .circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+  display: inline-block;
+  background-color: #CF423F;
+}
+#controls #nolive .triangle {
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 8px solid #F3EB0A;
+  display: inline-block;
+  margin-right: 5px;
+}
+#controls.VOD #timeline {
+  width: 75%;
+  left: 15%;
+}
+#controls.VOD #duration,
+#controls.VOD #current-time {
+  opacity: 1;
+}
+#controls.VOD #live,
+#controls.VOD #nolive {
+  opacity: 0;
+}
+#controls.VOD #current-time {
+  left: 8%;
+}
+#controls.VOD #duration {
+  right: 3%;
+  text-align: right;
+}
+#controls.LIVE24x7 #timeline {
+  display: none;
+}
+#controls.LIVE24x7 #duration,
+#controls.LIVE24x7 #current-time {
+  opacity: 0;
+}
+#controls.LIVE24x7 #live,
+#controls.LIVE24x7 #nolive {
+  opacity: 1;
+}
+#controls.LIVE #timeline {
+  width: 78%;
+  left: 9%;
+}
+#controls.LIVE #duration,
+#controls.LIVE #current-time {
+  opacity: 0;
+}
+#controls.LIVE #live,
+#controls.LIVE #nolive {
+  opacity: 1;
+}
+
+/*# sourceMappingURL=diva.css.map*/
