@@ -129,7 +129,7 @@ module.exports = (env, argv) => {
 			}),
 			new DefinePlugin({
                 APP_VERSION: JSON.stringify(pkg.version),
-                DEBUG_ENABLED: process.env.DEBUG_ENABLED || false,
+                DEBUG_ENABLED: true,
                 CONVIVA_CUSTOMER_KEY: JSON.stringify(process.env.ROGERS_CONVIVA_CUSTOMER_KEY),
                 CONVIVA_GATEWAY_URL: JSON.stringify(process.env.ROGERS_CONVIVA_GATEWAY_URL),
 			}),

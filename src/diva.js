@@ -153,7 +153,7 @@ const logger = (...value) => {
 
 logger(navigator.userAgent);
 
-debugPanel.style.display = debug ? 'block' : 'none';
+// debugPanel.style.display = debug ? 'block' : 'none';
 window.shakaOptions = {
   abr: {
     useNetworkInformation: false,
