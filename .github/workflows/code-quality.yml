@@ -1,0 +1,71 @@
+name: "Rogers Code Quality"
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  code_quality:
+    name: "Code quality"
+    runs-on: vxp-ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      SONAR_TOKEN: ${{ secrets.ROGERS_CC_SONAR_TOKEN }}
+      SONARCLOUD_URL: https://sqcorporate.deltatre.com
+
+    steps:
+      - name: "Checkout codebase"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: "Setup npmrc"
+        id: npmrc
+        run: |
+          echo "@deltatre-vxp:registry=https://npm.pkg.github.com" > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
+          echo "scripts-prepend-node-path=true" >> .npmrc
+
+      - name: "Installing node"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.17.1
+
+      # There are no tests and linter
+      # - name: "${{ matrix.name}} Yarn install and task execution"
+      #   uses: deltatre-vxp/d3cil-custom-actions/d3cil-html5-node@master
+      #   with:
+      #     additionalCache: .jest-cache/
+      #     args-install: --frozen-lockfile
+      #     tasks: |
+      #       test:ci
+      #       lint:ci
+
+      - name: "Sonarqube pull-request scan of the codebase"
+        uses: SonarSource/sonarcloud-github-action@v3.0.0
+        if: github.event_name == 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.ROGERS_CC_SONAR_TOKEN }}
+          SONARCLOUD_URL: https://sqcorporate.deltatre.com
+        with:
+          args: |
+            -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
+            -Dsonar.pullrequest.branch=${{ github.event.pull_request.head.ref }}
+            -Dsonar.pullrequest.base=${{ github.event.pull_request.base.ref }}
+            -Dsonar.projectVersion=${{ github.run_number }}
+
+      - name: "Sonarqube branch scan of the codebase"
+        uses: SonarSource/sonarcloud-github-action@v3.0.0
+        if: github.event_name == 'push'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.ROGERS_CC_SONAR_TOKEN }}
+          SONARCLOUD_URL: https://sqcorporate.deltatre.com
+        with:
+          args: |
+            -Dsonar.projectVersion=${{ github.run_number }}

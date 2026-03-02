@@ -1,0 +1,93 @@
+name: "Deploy from branch"
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment"
+        required: true
+        default: Test
+        type: choice
+        options:
+          - Test
+          - Staging
+          - Production
+      osdebugger:
+        description: "Include OS Debugger?"
+        required: true
+        type: boolean
+        default: false
+
+jobs:
+  deploy:
+    name: "Deploy Rogers Chromecast Receiver to ${{ inputs.environment }}"
+    runs-on: vxp-ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+    timeout-minutes: 30
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+      DEBUG_ENABLED: ${{ vars.DEBUG_ENABLED }}
+      ROGERS_CONVIVA_CUSTOMER_KEY: ${{ vars.ROGERS_CONVIVA_CUSTOMER_KEY }}
+      ROGERS_CONVIVA_GATEWAY_URL: ${{ vars.ROGERS_CONVIVA_GATEWAY_URL }}
+
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}   # Uses the branch selected in the dropdown automatically
+
+      - name: "Installing node"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.17.1
+
+      - name: "Install Yarn global tool"
+        run: |
+          npm install --global yarn
+
+      - name: " Yarn install"
+        run: |
+          yarn install --frozen-lockfile
+      - name: "Fetch all tags"
+        run: git fetch --tags
+
+      - name: "Install dependencies"
+        run: yarn install
+
+      - name: "Debug: Print environment variables"
+        run: |
+          echo "DEBUG_ENABLED: $DEBUG_ENABLED"
+          echo "ROGERS_CONVIVA_CUSTOMER_KEY: $ROGERS_CONVIVA_CUSTOMER_KEY"
+          echo "ROGERS_CONVIVA_GATEWAY_URL: $ROGERS_CONVIVA_GATEWAY_URL"
+
+      - name: "Run the build"
+        run: yarn build --mode production --env osdebugger=${{ github.event.inputs.osdebugger }}
+
+      - name: "Print Current Dir"
+        run: ls -la dist
+
+      - name: "Check for favicon.ico"
+        run: test -f dist/favicon.ico && echo "favicon.ico exists" || echo "favicon.ico missing"
+
+      - name: "Upload artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: chromecast-receiver
+          path: dist/**/*
+          if-no-files-found: error
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.ROGERS_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.ROGERS_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+
+      - name: "Print S3 bucket name"
+        run: echo ${{ vars.ROGERS_AWS_S3_BUCKET }}${{ vars.ROGERS_AWS_S3_PATH }}
+
+      - name: Upload the app to S3 bucket
+        shell: bash
+        run: |
+          aws s3 cp dist s3://${{ vars.ROGERS_AWS_S3_BUCKET }}${{ vars.ROGERS_AWS_S3_PATH }} --recursive --cache-control no-cache

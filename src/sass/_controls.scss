@@ -1,0 +1,160 @@
+#title {
+    font-size: 36px;
+    position: absolute;
+    z-index: 500;
+    color: #fff;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+    // transition: opacity 0.3s ease-in-out;
+    left: 5%;
+    right: 5%;
+    top: 40px;
+}
+
+#controls {
+    opacity: 0;
+    position: absolute;
+    z-index: 150;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    // transition: opacity 0.3s ease-in-out;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.8+100 */
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#cc000000', GradientType=0);
+    /* IE6-9 */
+    #timeline {
+        position: absolute;
+        height: 3px;
+        bottom: 45px;
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    #bar {
+        width: 0;
+        height: 100%;
+        // transition: width 0.3s ease-in-out;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    #play,
+    #pause {
+        position: absolute;
+        left: 3%;
+        bottom: 30px;
+        width: 40px;
+        height: 40px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        opacity: 0;
+    }
+
+    #play {
+        background-image: url("../img/d3_play_button.png");
+    }
+
+    #pause {
+        background-image: url("../img/d3_pause_button.png");
+    }
+
+
+    #duration,
+    #current-time,
+    #live,
+    #nolive {
+        color: #fff;
+        font-size: 15px;
+        position: absolute;
+        bottom: 40px;
+        width: 7%;
+    }
+
+    #live,
+    #nolive {
+        right: 3%;
+        text-align: center;
+    }
+
+    #live .circle {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 5px;
+        display: inline-block;
+        background-color: #CF423F;
+    }
+    #nolive .triangle {
+        width: 0;
+        height: 0;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-left: 8px solid #F3EB0A;
+        display: inline-block;
+        margin-right:5px;
+    }
+
+
+    &.VOD {
+
+        #timeline {
+            width: 75%;
+            left: 15%;
+        }
+
+        #duration,
+        #current-time {
+            opacity: 1;
+        }
+        #live,
+        #nolive {
+            opacity: 0;
+        }
+
+        #current-time {
+            left: 8%;
+        }
+
+        #duration {
+            right: 3%;
+            text-align: right;
+        }
+    }
+
+    &.LIVE24x7 {
+        #timeline {
+            display: none;
+        }
+
+        #duration,
+        #current-time {
+            opacity: 0;
+        }
+        #live,
+        #nolive {
+            opacity: 1;
+        }
+
+    }
+
+
+    &.LIVE {
+        #timeline {
+            width: 78%;
+            left: 9%;
+        }
+
+        #duration,
+        #current-time {
+            opacity: 0;
+        }
+        #live,
+        #nolive {
+            opacity: 1;
+        }
+    }
+}

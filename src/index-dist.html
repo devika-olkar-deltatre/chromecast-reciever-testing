@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Diva Chromecast</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="cache-control" content="no-cache"/>
+  <script type="text/javascript" src="lib/diva-html5-conviva-plugin.js"></script>
+  <script type="text/javascript" src="lib/shaka-player.compiled.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
+</head>
+<body>
+
+  <div id="title"></div>
+
+  <div id="error">
+    <span id="message"></span>
+  </div>
+
+  <div id="loading">
+    <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+      </div>
+  </div>
+
+  <div id="bgImageContainer">
+    <img id="bgImage" src="" alt="" />
+  </div>
+
+  <video id="video" preload="none" playsinline></video>
+
+  <div id="controls">
+    <div id="play"></div>
+    <div id="pause"></div>
+    <div id="current-time">00:00:00</div>
+    <div id="timeline"><div id="bar"></div></div>
+    <div id="duration">00:00:00</div>
+    <div id="live"><i class="circle"></i><span>LIVE NOW</span></div>
+    <div id="nolive"><i class="circle"></i><span>GO LIVE</span></div>
+  </div>
+
+  <div id="debugPanel">
+    <div id="receiverVersion" class="debugRow debugContent">Receiver v%%APP_VERSION%%</div>
+    <div id="pluginVideo" class="debugRow debugContent"></div>
+    <div class="debugRow"><div class="debugLabel">Cast Framework</div><div id="castVersion" class="debugContent"></div></div>
+    <div class="debugRow"><div class="debugLabel">Bitrate</div><div id="bitrate" class="debugContent"></div></div>
+    <div class="debugRow"><div class="debugLabel">CurrentTime</div><div id="videoCurrentTime" class="debugContent"></div></div>
+    <div class="debugRow"><div class="debugLabel">Duration</div><div id="videoDuration" class="debugContent"></div></div>
+    <div class="debugRow"><div class="debugLabel">Audio Track</div><div id="audioTrack" class="debugContent"></div></div>
+    <div class="debugRow"><div class="debugLabel">CC Track</div><div id="ccTrack" class="debugContent"></div></div>
+    <div class="debugRow"><div class="debugLabel">BufferSize</div><div id="bufferSize" class="debugContent"></div></div>
+    <div class="debugRow"><div class="debugLabel">Playback rate</div><div id="playrate" class="debugContent"></div></div>
+    <div class="debugRow"><div class="debugLabel">Player event</div><div id="playerevent" class="debugContent"></div></div>
+  </div>
+
+ 
+
+</body>
+</html>
